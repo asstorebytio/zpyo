@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- npx tailwindcss -i src/input.css -o src/output.css --watch -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Doto:wght@600&family=Noto+Sans+JP&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="src/output.css" rel="stylesheet" />
+    <title>Zpyoo •</title>
+  </head>
+  <body class="bg-white text-black dark:bg-gray-900 dark:text-white">
+    <!-- Navbar -->
+    <nav class="h-auto items-center justify-center flex relative m-[20px] p-[16px] opacity-[80%] dark:opacity-[80%]">
+      <div class="flex bg-[#F4F3F0CC] dark:bg-gray-600 rounded-full box-border border-8 border-[#F4F3F0CC] dark:border-gray-600 shadow-md relativ items-center text-[16px] space-x-[10px] font-poppins font-thin">
+        <!-- Title -->
+        <button><a href="/tailwindnyoba/about.html" class="mx-[5px] px-[20px] py-2.5 ">About</a></button>
+        <button><a href="/tailwindnyoba/projects.html" class="mx-[5px] px-[20px] py-2.5 ">Projects</a></button>
+        <button><a href="/tailwindnyoba/contact.html" class="mx-[5px] px-[20px] py-2.5 ">Contact</a></button>
+        <button><a href="/tailwindnyoba/source.html" class="mx-[5px] px-[20px] py-2.5 bg-zinc-300 rounded-full dark:bg-gray-500 font-bold">Source</a></button>
+        <!-- Toggle Button -->
+        <button id="theme-toggle" type="button" class="text-gray-900 dark:text-[#F4F3F0CC] bg-[#dad8d4cc] dark:bg-gray-500 rounded-full text-sm p-2.5 w-10 h-10">
+          <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="px-[8rem] mt-[-8rem] md:px-[6rem] sm:px-[4rem] flex justify-center items-center min-h-screen">
+      <div class="text-center">
+        <h1 class="font-mono font-bold text-xl">Thanks to.</h1>
+        <p class="font-mono pt-5">Everyone.<br /></p>
+      </div>
+    </div>
+    <!-- Home -->
+
+    <!-- Js -->
+    <script>
+      // Referensi ke ikon light dan dark
+      var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+      var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+      // Fungsi untuk mengatur tema dan ikon berdasarkan status yang tersimpan
+      function initializeTheme() {
+        // Periksa tema di localStorage atau preferensi sistem
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark'); // Aktifkan tema dark
+          themeToggleLightIcon.classList.remove('hidden'); // Tampilkan ikon light
+          themeToggleDarkIcon.classList.add('hidden'); // Sembunyikan ikon dark
+        } else {
+          document.documentElement.classList.remove('dark'); // Nonaktifkan tema dark
+          themeToggleLightIcon.classList.add('hidden'); // Sembunyikan ikon light
+          themeToggleDarkIcon.classList.remove('hidden'); // Tampilkan ikon dark
+        }
+      }
+
+      // Jalankan fungsi saat dimuat
+      initializeTheme();
+
+      // Referensi tombol tema
+      var themeToggleBtn = document.getElementById('theme-toggle');
+
+      // Event listener untuk tombol tema
+      themeToggleBtn.addEventListener('click', function () {
+        // Toggle antara tema dark dan light
+        if (localStorage.getItem('color-theme')) {
+          if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.add('dark'); // Aktifkan tema dark
+            localStorage.setItem('color-theme', 'dark'); // Simpan status tema
+          } else {
+            document.documentElement.classList.remove('dark'); // Nonaktifkan tema dark
+            localStorage.setItem('color-theme', 'light'); // Simpan status tema
+          }
+        } else {
+          // Jika tema tidak disimpan sebelumnya
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark'); // Nonaktifkan tema dark
+            localStorage.setItem('color-theme', 'light'); // Simpan status tema
+          } else {
+            document.documentElement.classList.add('dark'); // Aktifkan tema dark
+            localStorage.setItem('color-theme', 'dark'); // Simpan status tema
+          }
+        }
+        // Perbarui ikon berdasarkan tema baru
+        initializeTheme();
+      });
+    </script>
+    <!-- Code injected by live-server -->
+    <script>
+      // <![CDATA[  <-- For SVG support
+      if ('WebSocket' in window) {
+        (function () {
+          function refreshCSS() {
+            var sheets = [].slice.call(document.getElementsByTagName('link'));
+            var head = document.getElementsByTagName('head')[0];
+            for (var i = 0; i < sheets.length; ++i) {
+              var elem = sheets[i];
+              var parent = elem.parentElement || head;
+              parent.removeChild(elem);
+              var rel = elem.rel;
+              if ((elem.href && typeof rel != 'string') || rel.length == 0 || rel.toLowerCase() == 'stylesheet') {
+                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + new Date().valueOf();
+              }
+              parent.appendChild(elem);
+            }
+          }
+          var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+          var address = protocol + window.location.host + window.location.pathname + '/ws';
+          var socket = new WebSocket(address);
+          socket.onmessage = function (msg) {
+            if (msg.data == 'reload') window.location.reload();
+            else if (msg.data == 'refreshcss') refreshCSS();
+          };
+          if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+            console.log('Live reload enabled.');
+            sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+          }
+        })();
+      } else {
+        console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+      }
+      // ]]>
+    </script>
+  </body>
+</html>
